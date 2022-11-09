@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
+  final void Function({
+    required String email,
+    required String password,
+    required String username,
+    required bool isLogin,
+  }) submitAuthForm;
+  final bool isLoading;
+
   const AuthForm({
     Key? key,
+    required this.submitAuthForm,
+    required this.isLoading,
   }) : super(key: key);
 
   @override
@@ -24,6 +34,12 @@ class _AuthFormState extends State<AuthForm> {
       debugPrint(_userEmail);
       debugPrint(_userName);
       debugPrint(_userPassword);
+      widget.submitAuthForm(
+        email: _userEmail.trim(),
+        password: _userName.trim(),
+        username: _userPassword,
+        isLogin: _isLogin,
+      );
     }
   }
 
@@ -92,24 +108,27 @@ class _AuthFormState extends State<AuthForm> {
                   const SizedBox(
                     height: 12,
                   ),
-                  ElevatedButton(
-                    onPressed: _trySubmit,
-                    child: Text(
-                      _isLogin ? 'Login' : 'SignUP',
+                  if (widget.isLoading) const CircularProgressIndicator(),
+                  if (!widget.isLoading)
+                    ElevatedButton(
+                      onPressed: _trySubmit,
+                      child: Text(
+                        _isLogin ? 'Login' : 'SignUP',
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: (() {
-                      setState(() {
-                        _isLogin = !_isLogin;
-                      });
-                    }),
-                    child: Text(
-                      _isLogin
-                          ? 'Create New Account?'
-                          : 'I already have an account.',
+                  if (!widget.isLoading)
+                    TextButton(
+                      onPressed: (() {
+                        setState(() {
+                          _isLogin = !_isLogin;
+                        });
+                      }),
+                      child: Text(
+                        _isLogin
+                            ? 'Create New Account?'
+                            : 'I already have an account.',
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
