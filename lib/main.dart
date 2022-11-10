@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterchatapp/screens/auth_screen.dart';
+import 'package:flutterchatapp/screens/chat_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,7 +52,16 @@ class MyApp extends StatelessWidget {
           secondary: Colors.deepPurple,
         ),
       ),
-      home: const AuthScreen(),
+      home: StreamBuilder(
+        //this will help in checking if there is any token about user login. if there is a token, then we will move to chat screen else will move to auth screen.
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const ChatScreen();
+          }
+          return const AuthScreen();
+        },
+      ),
     );
   }
 }

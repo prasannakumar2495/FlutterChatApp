@@ -36,8 +36,8 @@ class _AuthFormState extends State<AuthForm> {
       debugPrint(_userPassword);
       widget.submitAuthForm(
         email: _userEmail.trim(),
-        password: _userName.trim(),
-        username: _userPassword,
+        password: _userPassword.trim(),
+        username: _userName.trim(),
         isLogin: _isLogin,
       );
     }
