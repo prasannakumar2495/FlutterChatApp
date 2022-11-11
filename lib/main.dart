@@ -11,10 +11,12 @@ void main() async {
   if (Platform.isIOS) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-          apiKey: "AIzaSyAbeRlKbmJxpCWie-PTN5JUAkC7ItuARm4",
-          appId: "1:78229810360:ios:c700a8db349786dfa8184d",
-          messagingSenderId: "78229810360",
-          projectId: "flutter-chat-app-5ff10"),
+        apiKey: "AIzaSyAbeRlKbmJxpCWie-PTN5JUAkC7ItuARm4",
+        appId: "1:78229810360:ios:c700a8db349786dfa8184d",
+        messagingSenderId: "78229810360",
+        projectId: "flutter-chat-app-5ff10",
+        storageBucket: "flutter-chat-app-5ff10.appspot.com",
+      ),
     );
   } else {
     await Firebase.initializeApp();
