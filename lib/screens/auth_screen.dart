@@ -37,6 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
           email: email,
           password: password,
         );
+        return;
       } else {
         userCredential = await _auth.createUserWithEmailAndPassword(
           email: email,

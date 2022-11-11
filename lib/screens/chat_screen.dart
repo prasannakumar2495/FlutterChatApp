@@ -13,6 +13,7 @@ class ChatScreen extends StatelessWidget {
         title: const Text('Flutter Chat'),
         actions: [
           DropdownButton(
+            underline: Container(),
             items: [
               DropdownMenuItem(
                 value: 'Logout',

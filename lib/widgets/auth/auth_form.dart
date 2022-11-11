@@ -9,7 +9,7 @@ class AuthForm extends StatefulWidget {
     required String password,
     required String username,
     required bool isLogin,
-    required File image,
+    File? image,
   }) submitAuthForm;
   final bool isLoading;
 
@@ -29,6 +29,7 @@ class _AuthFormState extends State<AuthForm> {
   var _userEmail = '';
   var _userName = '';
   var _userPassword = '';
+  // ignore: prefer_typing_uninitialized_variables
   var _userImageFile;
 
   void _trySubmit() {
@@ -84,6 +85,10 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                   TextFormField(
                     key: const ValueKey('Email'),
+                    autocorrect: false,
+                    textCapitalization: TextCapitalization.none,
+                    enableSuggestions: false,
+                    textInputAction: TextInputAction.next,
                     onSaved: (newValue) {
                       _userEmail = newValue!;
                     },
@@ -113,6 +118,10 @@ class _AuthFormState extends State<AuthForm> {
                       decoration: const InputDecoration(
                         labelText: 'User Name',
                       ),
+                      autocorrect: false,
+                      textCapitalization: TextCapitalization.words,
+                      enableSuggestions: false,
+                      textInputAction: TextInputAction.next,
                     ),
                   TextFormField(
                     key: const ValueKey('Password'),
@@ -129,6 +138,10 @@ class _AuthFormState extends State<AuthForm> {
                     decoration: const InputDecoration(
                       labelText: 'Password',
                     ),
+                    autocorrect: false,
+                    textCapitalization: TextCapitalization.none,
+                    enableSuggestions: false,
+                    textInputAction: TextInputAction.done,
                   ),
                   const SizedBox(
                     height: 12,
